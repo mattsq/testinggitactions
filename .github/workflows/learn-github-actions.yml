@@ -3,17 +3,17 @@ on: [push]
 jobs:
   jobone:
     runs-on: ubuntu-latest
-      steps:
-        - run: echo "This is job one."
+    steps:
+      - run: echo "This is job one."
   jobtwo:
     needs: jobone
     runs-on: ubuntu-latest
-      steps:
-        - run: echo "This is job two."
+    steps:
+      - run: echo "This is job two."
   jobthree:
     needs: jobtwo
     runs-on: ubuntu-latest
-      steps:
-        - run: echo "This is job three."
+    steps:
+      - run: echo "This is job three."
 
 
