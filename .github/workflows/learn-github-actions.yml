@@ -3,17 +3,12 @@ on: [push]
 jobs:
   jobone:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [1,2,3]
+    env:
+      node: ${{ matrix.node }}
     steps:
-      - run: echo "This is job one."
-  jobtwo:
-    needs: jobone
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This is job two."
-  jobthree:
-    needs: jobtwo
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This is job three."
+      - run: echo "This is job $node."
 
 
