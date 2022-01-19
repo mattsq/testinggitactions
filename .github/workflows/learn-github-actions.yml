@@ -1,12 +1,19 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  test-bash:
+  jobone:
     runs-on: ubuntu-latest
-    steps:
-      - shell: bash
-        env:
-          example_secret: ${{ secrets.EXAMPLE_SECRET }}
-        run: |
-          echo "This is $example_secret"
+      steps:
+        - run: echo "This is job one."
+  jobtwo:
+    needs: jobone
+    runs-on: ubuntu-latest
+      steps:
+        - run: echo "This is job two."
+  jobthree:
+    needs: jobtwo
+    runs-on: ubuntu-latest
+      steps:
+        - run: echo "This is job three."
+
 
