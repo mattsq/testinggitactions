@@ -1,0 +1,23 @@
+name: create-a-file
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.1.1'
+      - name: Create a table and write it
+        run: |
+          x <- data.frame(x = c(1,2,3), y = c(3,2,1))
+          write.csv(x = x, "test-table.csv")
+        shell: Rscript {0}
+      - name: Commit created created file
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+          git add --all
+          git commit -am "Add File from create-a-file"
+          git push
